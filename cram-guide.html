@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Night Before — GI & Endocrine Study Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #10142B;
+    --bg2: #171C38;
+    --paper: #1B2044;
+    --ink: #EDEBE3;
+    --dim: #9CA0C0;
+    --yellow: #F5E663;
+    --pink: #FF6FA5;
+    --teal: #5EEAD4;
+    --line: rgba(237,235,227,0.12);
+    --radius: 14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(94,234,212,0.08), transparent 40%),
+      radial-gradient(circle at 90% 10%, rgba(255,111,165,0.10), transparent 45%),
+      var(--bg);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:80px;
+  }
+  .marker{font-family:'Permanent Marker', cursive; letter-spacing:0.5px;}
+  .mono{font-family:'JetBrains Mono', monospace;}
+
+  a{color:inherit;}
+
+  /* ---- Panic meter ---- */
+  #panicbar{
+    position:fixed; top:0; left:0; height:5px; width:0%;
+    background:linear-gradient(90deg, var(--teal), var(--yellow), var(--pink));
+    z-index:999; transition:width .15s ease-out;
+  }
+
+  /* ---- Header ---- */
+  header{
+    padding:70px 24px 50px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px dashed var(--line);
+  }
+  h1.title{
+    font-family:'Permanent Marker', cursive;
+    font-size:clamp(2.4rem, 7vw, 4.6rem);
+    margin:18px 0 6px;
+    line-height:1.05;
+    color:var(--yellow);
+    text-shadow: 3px 3px 0 rgba(255,111,165,0.35);
+    transform:rotate(-1.2deg);
+  }
+  .subtitle{
+    color:var(--dim);
+    font-size:1rem;
+    max-width:560px;
+    margin:0 auto;
+  }
+  .badge-row{
+    display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+    margin-top:26px;
+  }
+  .badge{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    padding:7px 14px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    color:var(--ink);
+    background:rgba(255,255,255,0.03);
+  }
+  .badge.hot{border-color:var(--pink); color:var(--pink);}
+
+  /* ---- Sticky nav ---- */
+  nav#tabs{
+    position:sticky; top:5px; z-index:90;
+    display:flex; gap:8px; overflow-x:auto;
+    padding:14px 18px;
+    background:rgba(16,20,43,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    scrollbar-width:none;
+  }
+  nav#tabs::-webkit-scrollbar{display:none;}
+  nav#tabs a{
+    flex:0 0 auto;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    padding:8px 14px;
+    border-radius:8px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    white-space:nowrap;
+    text-decoration:none;
+    color:var(--ink);
+    transition:transform .15s ease, border-color .15s ease;
+  }
+  nav#tabs a:hover{ border-color:var(--teal); transform:translateY(-2px); }
+
+  main{ max-width:920px; margin:0 auto; padding:0 20px; }
+
+  section{ padding:56px 0 20px; border-bottom:1px dashed var(--line); }
+  section:last-of-type{ border-bottom:none; }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px; letter-spacing:2.5px; text-transform:uppercase;
+    color:var(--teal); margin-bottom:10px;
+  }
+  h2{
+    font-family:'Permanent Marker', cursive;
+    font-weight:400;
+    font-size:clamp(1.6rem, 4vw, 2.3rem);
+    margin:0 0 8px;
+    color:var(--ink);
+  }
+  h2 span.hl{
+    background:linear-gradient(120deg, rgba(245,230,99,0.35) 0%, rgba(245,230,99,0.35) 100%);
+    background-repeat:no-repeat; background-size:100% 40%; background-position:0 88%;
+    padding:0 2px;
+  }
+  .lede{ color:var(--dim); max-width:640px; margin-bottom:26px; font-size:0.98rem; }
+
+  /* sticky-note cards */
+  .grid{ display:grid; gap:16px; }
+  .grid.cols-2{ grid-template-columns:repeat(2,1fr); }
+  .grid.cols-3{ grid-template-columns:repeat(3,1fr); }
+  @media (max-width:720px){ .grid.cols-2, .grid.cols-3{ grid-template-columns:1fr; } }
+
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:18px 20px;
+    position:relative;
+  }
+  .card h3{
+    margin:0 0 8px; font-size:1.02rem; font-weight:600;
+    display:flex; align-items:center; gap:8px;
+  }
+  .card p{ margin:0; color:var(--ink); font-size:0.92rem; line-height:1.5; opacity:0.92;}
+  .tag{
+    font-family:'JetBrains Mono', monospace; font-size:10px;
+    color:var(--bg); background:var(--teal);
+    padding:2px 7px; border-radius:5px; font-weight:600;
+  }
+  .tag.pink{ background:var(--pink); }
+  .tag.yellow{ background:var(--yellow); }
+
+  /* accordion */
+  details.acc{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    margin-bottom:12px;
+    overflow:hidden;
+  }
+  details.acc summary{
+    cursor:pointer; list-style:none;
+    padding:16px 20px;
+    display:flex; align-items:center; justify-content:space-between;
+    font-weight:600; font-size:1rem;
+  }
+  details.acc summary::-webkit-details-marker{ display:none; }
+  details.acc summary::after{
+    content:"+"; font-family:'JetBrains Mono',monospace; font-size:18px; color:var(--teal);
+    transition:transform .2s ease;
+  }
+  details.acc[open] summary::after{ content:"–"; }
+  details.acc .acc-body{
+    padding:0 20px 20px; color:var(--dim); font-size:0.93rem; line-height:1.65;
+  }
+  details.acc .acc-body strong{ color:var(--ink); }
+  details.acc .acc-body ul{ padding-left:18px; margin:8px 0; }
+
+  /* pathway strip */
+  .pathway{
+    display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+    font-family:'JetBrains Mono', monospace; font-size:12.5px;
+    background:var(--bg2); border:1px solid var(--line);
+    border-radius:10px; padding:16px; margin:14px 0;
+  }
+  .pathway .step{ padding:5px 10px; background:var(--paper); border-radius:6px; }
+  .pathway .arrow{ color:var(--pink); }
+
+  /* table */
+  table{ width:100%; border-collapse:collapse; font-size:0.88rem; margin-top:10px;}
+  th,td{ text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top;}
+  th{ font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--teal);}
+  tr:last-child td{ border-bottom:none; }
+
+  /* mnemonic box */
+  .mnemonic{
+    border:1px dashed var(--pink);
+    background:rgba(255,111,165,0.06);
+    border-radius:var(--radius);
+    padding:16px 18px;
+    margin:16px 0;
+    font-size:0.92rem;
+  }
+  .mnemonic .eyebrow{ color:var(--pink); }
+
+  /* danger / high yield callout */
+  .callout{
+    background:rgba(245,230,99,0.08);
+    border-left:3px solid var(--yellow);
+    border-radius:0 10px 10px 0;
+    padding:14px 18px;
+    margin:16px 0;
+    font-size:0.92rem;
+  }
+
+  /* flashcards */
+  .flash{
+    background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px; cursor:pointer; user-select:none; min-height:110px;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    font-size:0.95rem; transition:background .15s ease;
+  }
+  .flash:hover{ background:var(--bg2); }
+  .flash .q{ font-weight:600; }
+  .flash .a{ display:none; color:var(--teal); }
+  .flash.flipped .q{ display:none; }
+  .flash.flipped .a{ display:block; }
+  .flash small{ display:block; margin-top:8px; color:var(--dim); font-family:'JetBrains Mono',monospace; font-size:10px; }
+
+  /* recap footer */
+  footer{
+    max-width:920px; margin:0 auto; padding:50px 20px 10px;
+    text-align:center; color:var(--dim); font-size:0.85rem;
+  }
+  footer .marker{ color:var(--yellow); font-size:1.3rem; display:block; margin-bottom:6px; }
+
+  ::selection{ background:var(--yellow); color:var(--bg); }
+</style>
+</head>
+<body>
+
+<div id="panicbar"></div>
+
+<header>
+  <h1 class="title">The Night Before.</h1>
+  <p class="subtitle">GI and Endocrine physiology, condensed to what's most likely to be tested.</p>
+  <div class="badge-row">
+    <span class="badge">GI physiology</span>
+    <span class="badge">Endocrine physiology</span>
+  </div>
+</header>
+
+<nav id="tabs">
+  <a href="#gi-tract">GI tract</a>
+  <a href="#digestion">Digestion</a>
+  <a href="#gi-disorders">GI disorders</a>
+  <a href="#pituitary">Pituitary</a>
+  <a href="#pregnancy">Pregnancy hormones</a>
+  <a href="#sperm">Spermatogenesis</a>
+  <a href="#kidney">Kidney endocrine</a>
+  <a href="#diabetes">Diabetes</a>
+  <a href="#flashcards">Flashcards</a>
+  <a href="#recap">Recap</a>
+</nav>
+
+<main>
+
+  <!-- GI TRACT -->
+  <section id="gi-tract">
+    <div class="eyebrow">01 — The tube</div>
+    <h2>The GI tract, part by <span class="hl">part</span></h2>
+    <p class="lede">One continuous tube, mouth to anus. Each part has one main job. If a question describes a function, it's really just asking "which organ is this."</p>
+
+    <div class="grid cols-3">
+      <div class="card"><h3>Mouth <span class="tag yellow">mechanical + carbs</span></h3><p>Chews food, mixes with saliva. Salivary amylase starts breaking starch. Tongue rolls it into a bolus.</p></div>
+      <div class="card"><h3>Pharynx <span class="tag">traffic cop</span></h3><p>Shared with the airway. Just moves the bolus through and makes sure it doesn't go down the wrong pipe.</p></div>
+      <div class="card"><h3>Oesophagus <span class="tag">delivery only</span></h3><p>No digestion here. Peristalsis pushes food down. Lower oesophageal sphincter keeps stomach acid from coming back up.</p></div>
+      <div class="card"><h3>Stomach <span class="tag pink">protein starts here</span></h3><p>Parietal cells: HCl + intrinsic factor. Chief cells: pepsinogen + gastric lipase. Mucous cells: protective mucus. HCl turns pepsinogen into pepsin → early protein digestion. Food leaves as chyme.</p></div>
+      <div class="card"><h3>Duodenum <span class="tag pink">the mixing bowl</span></h3><p>Acidic chyme + bile (from liver/gallbladder) + pancreatic juice. Bicarbonate neutralizes acid. Most chemical digestion kicks off here.</p></div>
+      <div class="card"><h3>Jejunum <span class="tag yellow">absorption MVP</span></h3><p>Villi and microvilli everywhere. Main site for absorbing digested carbs, proteins, fats, water, electrolytes, vitamins.</p></div>
+      <div class="card"><h3>Ileum <span class="tag">the specialist</span></h3><p>Finishes absorption. Special job: vitamin B12 (with intrinsic factor) and bile salts, which get recycled back to the liver.</p></div>
+      <div class="card"><h3>Large intestine <span class="tag">the dehydrator</span></h3><p>No villi. Absorbs water + electrolytes, hosts the microbiota, turns leftovers into faeces.</p></div>
+      <div class="card"><h3>Accessory organs</h3><p>Liver makes bile. Gallbladder stores/concentrates it. Pancreas is both endocrine and exocrine — exocrine side sends enzymes + bicarbonate to the duodenum.</p></div>
+    </div>
+
+    <div class="callout"><strong>High-yield:</strong> if a question says "neutralizes acid" → duodenum / pancreatic bicarbonate. If it says "emulsifies fat" → bile salts, not an enzyme. Bile salts don't digest anything — they just break fat into smaller droplets.</div>
+  </section>
+
+  <!-- DIGESTION -->
+  <section id="digestion">
+    <div class="eyebrow">02 — Breaking it down</div>
+    <h2>Carbs, protein, <span class="hl">fat</span></h2>
+    <p class="lede">Same pattern for all three: a little starts in the mouth/stomach, most of the real work happens in the small intestine.</p>
+
+    <table>
+      <tr><th>Nutrient</th><th>Mouth</th><th>Stomach</th><th>Small intestine</th><th>Final products</th></tr>
+      <tr>
+        <td><strong>Carbs</strong></td>
+        <td>Salivary amylase → starch breakdown begins</td>
+        <td>Amylase inactivated by acid; little digestion happens</td>
+        <td>Pancreatic amylase → maltose/oligosaccharides; brush-border enzymes (maltase, sucrase, lactase) finish the job</td>
+        <td>Glucose, galactose, fructose</td>
+      </tr>
+      <tr>
+        <td><strong>Protein</strong></td>
+        <td>None (mechanical only)</td>
+        <td>HCl activates pepsinogen → pepsin; proteins → peptides</td>
+        <td>Trypsin, chymotrypsin, carboxypeptidases (pancreas) + brush-border peptidases</td>
+        <td>Amino acids, dipeptides, tripeptides</td>
+      </tr>
+      <tr>
+        <td><strong>Fat</strong></td>
+        <td>Lingual lipase (minor)</td>
+        <td>Gastric lipase (minor)</td>
+        <td>Bile salts emulsify → pancreatic lipase digests → micelles carry products to epithelium</td>
+        <td>Fatty acids + monoglycerides → reassembled into triglycerides → chylomicrons</td>
+      </tr>
+    </table>
+
+    <div class="mnemonic">
+      <div class="eyebrow">Key sequence</div>
+      Big fat globs can't just float into the blood — <strong>bile salts chop them up</strong>, <strong>lipase digests the pieces</strong>, <strong>micelles taxi them</strong> to the intestinal wall, and inside the cell they get repackaged as <strong>chylomicrons</strong>, which skip the blood entirely and go into the <strong>lacteals (lymph)</strong> first. Short/medium-chain fatty acids don't bother with any of this — straight into portal blood.
+    </div>
+
+    <div class="callout"><strong>Absorption route:</strong> sugars and amino acids → blood → hepatic portal vein → liver. Long-chain fats → lymphatic lacteals → bloodstream (not the portal vein first). This distinction gets tested constantly.</div>
+  </section>
+
+  <!-- GI DISORDERS -->
+  <section id="gi-disorders">
+    <div class="eyebrow">03 — When it breaks</div>
+    <h2>Two GI conditions to <span class="hl">know cold</span></h2>
+
+    <details class="acc" open>
+      <summary>Dysphagia <span class="tag">swallowing</span></summary>
+      <div class="acc-body">
+        Difficulty or discomfort swallowing. Two flavors:
+        <ul>
+          <li><strong>Oropharyngeal</strong> — trouble starting the swallow / moving food from mouth+pharynx into the oesophagus. Usually a muscle or nerve problem.</li>
+          <li><strong>Oesophageal</strong> — food struggles to get through the oesophagus itself. Causes: strictures, tumours, inflammation, motility disorders, GERD.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary>Peptic ulcer <span class="tag pink">acid damage</span></summary>
+      <div class="acc-body">
+        Open sore in the stomach or duodenal lining. Happens when <strong>acid/pepsin damage &gt; mucosal protection</strong>.
+        <ul>
+          <li><strong>Top cause:</strong> H. pylori infection</li>
+          <li><strong>Second cause:</strong> long-term NSAID use (aspirin, ibuprofen) — these cut protective prostaglandins, which lowers mucus + bicarbonate secretion and reduces mucosal blood flow</li>
+          <li>Normal defense = mucus + bicarbonate layer + intact epithelium + good blood flow. Weaken any of these and acid wins.</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <!-- PITUITARY -->
+  <section id="pituitary">
+    <div class="eyebrow">04 — The "master gland"</div>
+    <h2>Pituitary <span class="hl">gland</span></h2>
+    <p class="lede">Sits in the sella turcica below the hypothalamus, right next to the optic chiasma (tumour → visual problems). Two functionally different halves.</p>
+
+    <div class="grid cols-2">
+      <div class="card">
+        <h3>Anterior pituitary <span class="tag yellow">makes hormones</span></h3>
+        <p>Glandular tissue. Controlled by hypothalamic releasing/inhibiting hormones via the hypophyseal portal system. Makes: <strong>GH, TSH, ACTH, FSH, LH, prolactin.</strong></p>
+      </div>
+      <div class="card">
+        <h3>Posterior pituitary <span class="tag">stores hormones</span></h3>
+        <p>Nervous tissue — makes nothing itself. Just stores + releases ADH and oxytocin, which are actually made by hypothalamic neurons.</p>
+      </div>
+    </div>
+
+    <div class="grid cols-3" style="margin-top:16px;">
+      <div class="card"><h3>GH</h3><p>Growth of bone/muscle via IGF-1 (liver). Also raises blood glucose + promotes fat breakdown. Excess in kids → gigantism; in adults → acromegaly.</p></div>
+      <div class="card"><h3>TSH</h3><p>Drives thyroid to make T3/T4. Controlled by hypothalamic TRH, shut off by thyroid hormone feedback.</p></div>
+      <div class="card"><h3>ACTH</h3><p>Drives adrenal cortex to make cortisol. Excess from a pituitary tumour = Cushing disease.</p></div>
+      <div class="card"><h3>FSH</h3><p>Females: grows ovarian follicles + estrogen. Males: supports Sertoli cells → spermatogenesis.</p></div>
+      <div class="card"><h3>LH</h3><p>Females: LH surge triggers ovulation, then builds corpus luteum. Males: drives Leydig cells → testosterone.</p></div>
+      <div class="card"><h3>Prolactin</h3><p>Milk production. Unusual — mainly <strong>inhibited</strong> by hypothalamic dopamine. Suckling ↓ dopamine → ↑ prolactin.</p></div>
+      <div class="card"><h3>ADH (vasopressin)</h3><p>↑ water reabsorption at kidney collecting ducts. High doses vasoconstrict. Deficiency → diabetes insipidus.</p></div>
+      <div class="card"><h3>Oxytocin</h3><p>Uterine contraction in labour (positive feedback) + milk ejection (let-down reflex). Not the same as prolactin — prolactin makes milk, oxytocin pushes it out.</p></div>
+      <div class="card"><h3>MSH (pars intermedia)</h3><p>Melanin production. Big in some animals, minor player in humans.</p></div>
+    </div>
+
+    <div class="callout"><strong>Don't mix these up:</strong> prolactin makes milk; oxytocin ejects milk.</div>
+  </section>
+
+  <!-- PREGNANCY -->
+  <section id="pregnancy">
+    <div class="eyebrow">05 — Nine months of hormones</div>
+    <h2>Hormones of <span class="hl">pregnancy</span></h2>
+
+    <div class="pathway">
+      <span class="step">Implantation</span><span class="arrow">→</span>
+      <span class="step">hCG</span><span class="arrow">→</span>
+      <span class="step">corpus luteum kept alive</span><span class="arrow">→</span>
+      <span class="step">progesterone</span><span class="arrow">→</span>
+      <span class="step">endometrium maintained</span>
+    </div>
+
+    <div class="grid cols-2">
+      <div class="card"><h3>hCG</h3><p>First hormone detectable — this is what pregnancy tests pick up. Made by the syncytiotrophoblast. Job: keep the corpus luteum alive so it keeps making progesterone.</p></div>
+      <div class="card"><h3>Progesterone</h3><p>Corpus luteum early → placenta later. Maintains endometrium, relaxes uterine muscle (prevents early labour), preps breasts, dampens maternal immune response to the fetus.</p></div>
+      <div class="card"><h3>Estrogen</h3><p>Mostly placental. Grows the uterus, develops mammary ducts, and near term increases oxytocin receptors + prostaglandins to prep for labour.</p></div>
+      <div class="card"><h3>hPL</h3><p>↑ maternal insulin resistance → spares glucose for the fetus. Also breaks down maternal fat for energy. This is the hormone behind gestational diabetes risk.</p></div>
+      <div class="card"><h3>Relaxin</h3><p>Loosens pelvic ligaments + softens cervix. Reduces uterine contractility alongside progesterone.</p></div>
+      <div class="card"><h3>Oxytocin</h3><p>Labour contractions (positive feedback loop) + milk ejection after birth.</p></div>
+      <div class="card"><h3>Placental CRH</h3><p>Rises through pregnancy (opposite of normal CRH feedback). Drives ACTH/cortisol and is linked to the timing of labour onset.</p></div>
+      <div class="card"><h3>Cortisol</h3><p>Maternal metabolism support + matures fetal lungs before birth.</p></div>
+    </div>
+
+    <div class="callout"><strong>Why milk doesn't leak during pregnancy:</strong> prolactin is high, but estrogen + progesterone block its milk-making effect. Delivery → placenta gone → estrogen/progesterone crash → prolactin finally works unopposed.</div>
+  </section>
+
+  <!-- SPERMATOGENESIS -->
+  <section id="sperm">
+    <div class="eyebrow">06 — Making sperm</div>
+    <h2>Spermato<span class="hl">genesis</span></h2>
+    <p class="lede">Happens in the seminiferous tubules. Takes ~2–2.5 months. Cells mature as they move from the basement membrane toward the lumen.</p>
+
+    <div class="pathway">
+      <span class="step">Spermatogonium (2n)</span><span class="arrow">→</span>
+      <span class="step">Primary spermatocyte (2n)</span><span class="arrow">→ meiosis I →</span>
+      <span class="step">2 Secondary spermatocytes (n)</span><span class="arrow">→ meiosis II →</span>
+      <span class="step">4 Spermatids (n)</span><span class="arrow">→ spermiogenesis →</span>
+      <span class="step">Spermatozoa</span>
+    </div>
+
+    <div class="grid cols-2">
+      <div class="card"><h3>Sertoli cells <span class="tag">support cells</span></h3><p>Support/nourish germ cells, form the blood-testis barrier, secrete androgen-binding protein (keeps local testosterone high) and inhibin B (dials FSH down). Respond to FSH.</p></div>
+      <div class="card"><h3>Leydig cells <span class="tag pink">the factory</span></h3><p>Sit between the tubules. Make testosterone in response to LH.</p></div>
+    </div>
+
+    <div class="pathway">
+      <span class="step">Hypothalamus (GnRH)</span><span class="arrow">→</span>
+      <span class="step">Anterior pituitary</span><span class="arrow">→</span>
+      <span class="step">LH → Leydig cells → testosterone</span>
+      <span class="arrow">|</span>
+      <span class="step">FSH → Sertoli cells → supports spermatogenesis</span>
+    </div>
+
+    <div class="mnemonic"><div class="eyebrow">Spermiogenesis, fast</div>Golgi → <strong>acrosome</strong> (fertilization enzymes). Nucleus → <strong>condenses</strong> (small streamlined head). Centriole → <strong>flagellum</strong> (movement). Mitochondria → <strong>middle piece</strong> (ATP for the tail). Extra cytoplasm gets dumped as residual bodies. End result: a haploid cell built for one job — swim and deliver DNA.</div>
+
+    <div class="callout">Sperm are structurally finished after spermiogenesis but aren't functionally ready — they mature and gain motility in the <strong>epididymis</strong>, not the testis.</div>
+  </section>
+
+  <!-- KIDNEY -->
+  <section id="kidney">
+    <div class="eyebrow">07 — Kidney as an endocrine organ</div>
+    <h2>Endocrine <span class="hl">kidney</span></h2>
+
+    <div class="grid cols-2">
+      <div class="card"><h3>Renin</h3><p>Released by juxtaglomerular cells when renal blood flow/BP drops. Starts RAAS: angiotensinogen → angiotensin I → (ACE) → angiotensin II → vasoconstriction + aldosterone release → Na⁺ and water retention → BP restored.</p></div>
+      <div class="card"><h3>Erythropoietin</h3><p>Made when kidney oxygen levels fall. Tells bone marrow to make more red blood cells. Explains why chronic kidney disease → anaemia.</p></div>
+    </div>
+
+    <div class="callout">Kidney also activates vitamin D (calcitriol), feeding into calcium regulation — worth remembering as a third endocrine job even though it's covered lightly here.</div>
+  </section>
+
+  <!-- DIABETES -->
+  <section id="diabetes">
+    <div class="eyebrow">08 — When insulin fails</div>
+    <h2>Diabetes <span class="hl">mellitus</span></h2>
+
+    <table>
+      <tr><th>Type</th><th>What's happening</th><th>Typical picture</th></tr>
+      <tr><td><strong>Type 1</strong></td><td>Autoimmune destruction of pancreatic beta cells → little/no insulin</td><td>Often young; needs lifelong insulin</td></tr>
+      <tr><td><strong>Type 2</strong></td><td>Insulin resistance first, then declining insulin secretion</td><td>Linked to excess weight, inactivity, genetics</td></tr>
+      <tr><td><strong>Gestational</strong></td><td>Pregnancy hormones (hPL especially) raise insulin resistance beyond what the pancreas can cover</td><td>First recognized during pregnancy</td></tr>
+    </table>
+
+    <div class="callout">Same downstream story either way: glucose stays in the blood → kidneys spill it into urine → excess urination + thirst → long-term vessel/nerve damage (eyes, kidneys, nerves, heart).</div>
+  </section>
+
+  <!-- FLASHCARDS -->
+  <section id="flashcards">
+    <div class="eyebrow">09 — Tap to flip</div>
+    <h2>Speed-round <span class="hl">flashcards</span></h2>
+    <p class="lede">Tap a card to reveal the answer.</p>
+
+    <div class="grid cols-3" id="flashgrid">
+      <div class="flash" onclick="this.classList.toggle('flipped')"><span class="q">What converts pepsinogen to pepsin?</span><span class="a">Hydrochloric acid (from parietal cells)</span><small>tap to flip</small></div>
+      <div class="flash" onclick="this.classList.toggle('flipped')"><span class="q">What do bile salts actually do to fat?</span><span class="a">Emulsify it — break it into smaller droplets. They don't digest it.</span><small>tap to flip</small></div>
+      <div class="flash" onclick="this.classList.toggle('flipped')"><span class="q">How do long-chain fats reach the bloodstream?</span><span class="a">Packaged as chylomicrons → lacteals → lymphatic system → blood</span><small>tap to flip</small></div>
+      <div class="flash" onclick="this.classList.toggle('flipped')"><span class="q">Which pituitary hormones come from the posterior lobe?</span><span class="a">ADH and oxytocin — made in the hypothalamus, just stored/released here</span><small>tap to flip</small></div>
+      <div class="flash" onclick="this.classList.toggle('flipped')"><span class="q">What keeps the corpus luteum alive in early pregnancy?</span><span class="a">hCG</span><small>tap to flip</small></div>
+      <div class="flash" onclick="this.classList.toggle('flipped')"><span class="q">What hormone drives insulin resistance in pregnancy?</span><span class="a">Human placental lactogen (hPL)</span><small>tap to flip</small></div>
+      <div class="flash" onclick="this.classList.toggle('flipped')"><span class="q">What does FSH target in the testis?</span><span class="a">Sertoli cells (supports spermatogenesis)</span><small>tap to flip</small></div>
+      <div class="flash" onclick="this.classList.toggle('flipped')"><span class="q">What does LH target in the testis?</span><span class="a">Leydig cells (produces testosterone)</span><small>tap to flip</small></div>
+      <div class="flash" onclick="this.classList.toggle('flipped')"><span class="q">What starts the renin-angiotensin cascade?</span><span class="a">Renin, from juxtaglomerular cells, in response to low renal blood flow/BP</span><small>tap to flip</small></div>
+      <div class="flash" onclick="this.classList.toggle('flipped')"><span class="q">Top two causes of peptic ulcers?</span><span class="a">H. pylori infection and long-term NSAID use</span><small>tap to flip</small></div>
+      <div class="flash" onclick="this.classList.toggle('flipped')"><span class="q">Which part of the small intestine absorbs B12?</span><span class="a">The ileum (needs intrinsic factor)</span><small>tap to flip</small></div>
+      <div class="flash" onclick="this.classList.toggle('flipped')"><span class="q">Type 1 vs type 2 diabetes — core difference?</span><span class="a">Type 1: autoimmune beta-cell destruction, no insulin. Type 2: insulin resistance, then declining secretion.</span><small>tap to flip</small></div>
+    </div>
+  </section>
+
+  <!-- RECAP -->
+  <section id="recap">
+    <div class="eyebrow">10 — Summary</div>
+    <h2>Final <span class="hl">recap</span></h2>
+    <div class="card">
+      <p style="opacity:1;">
+      • Most digestion and all absorption happens in the <strong>small intestine</strong>, not the stomach.<br>
+      • Bile salts <strong>emulsify</strong> fat, they don't digest it — pancreatic lipase does the digesting.<br>
+      • Anterior pituitary <strong>makes</strong> hormones (GH, TSH, ACTH, FSH, LH, prolactin). Posterior pituitary just <strong>stores/releases</strong> ADH and oxytocin.<br>
+      • Prolactin makes milk. Oxytocin ejects it. Different jobs, don't swap them.<br>
+      • hCG keeps the corpus luteum alive early on; the placenta takes over hormone production later.<br>
+      • LH → Leydig cells → testosterone. FSH → Sertoli cells → supports sperm development.<br>
+      • Renin starts RAAS when blood pressure or renal blood flow drops.<br>
+      • Type 1 diabetes = no insulin. Type 2 = insulin resistance first.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  GI &amp; Endocrine Physiology — Study Guide
+</footer>
+<div style="position:fixed; bottom:8px; right:12px; font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:1px; color:rgba(156,160,192,0.35); z-index:80;">G.A.B.O.S</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    document.getElementById('panicbar').style.width = scrolled + '%';
+  });
+</script>
+
+</body>
+</html>
