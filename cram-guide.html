@@ -534,6 +534,15 @@
     const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
     document.getElementById('panicbar').style.width = scrolled + '%';
   });
+  fetch("https://jsonplaceholder.typicode.com/posts/1")
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => {
+    console.log("API error:", error);
+  });
+  
 </script>
 
 </body>
