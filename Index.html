@@ -529,6 +529,10 @@
 <div style="position:fixed; bottom:8px; right:12px; font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:1px; color:rgba(156,160,192,0.35); z-index:80;">G.A.B.O.S</div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+  const supabase = window.supabase.createClient(
+  "https://imscyjtiefhksedrcqne.supabase.co",
+  "sb_publishable_syBfkd4LDcSxZ0RUTkr6kA_Q1I0C2-V"
+);
   window.addEventListener('scroll', () => {
     const h = document.documentElement;
     const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
