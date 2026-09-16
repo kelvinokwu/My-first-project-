@@ -544,6 +544,23 @@
   "https://imscyjtiefhksedrcqne.supabase.co",
   "sb_publishable_syBfkd4LDcSxZ0RUTkr6kA_Q1I0C2-V"
 );
+  async function signUp() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const message = document.getElementById("auth-message");
+
+  const { data, error } = await supabase.auth.signUp({
+    email: email,
+    password: password
+  });
+
+  if (error) {
+    message.textContent = error.message;
+    return;
+  }
+
+  message.textContent = "Account created. Check your email to confirm your account.";
+  }
   window.addEventListener('scroll', () => {
     const h = document.documentElement;
     const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
